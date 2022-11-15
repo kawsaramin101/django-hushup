@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<form hx-post="{% url 'users:login' %}" hx-target="#login_error" hx-swap="innerHTML">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input name="username" type="text" id="username" placeholder="e.g. John" required>
+
+    <label for="password">Password:</label>
+    <input name="password" type="password" id="password" placeholder="Password" required>
+    <input type="hidden" name="next" value="{{ request.GET.next }}" />
+    <p id="login_error"></p>
+    <button id="submitbtn" type="submit">
+        Login
+    </button>
+    <p>
+        Don't have an account? <a href="{% url 'users:signup' %}">Sign up</a>
+    </p>
+</form>
+{% endblock content %}
+{% block script %}
+{% endblock script %}

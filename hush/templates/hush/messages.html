@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="margin">
+    {% if messages %}
+    {% for message in messages %}
+    <article class="card">
+        <header>
+            {% if message.title %}
+            <h3>{{message.title}}</h3>
+            {% endif %}
+            {{message.created}}
+        </header>
+        <p>
+        {{message.body}}
+        </p>
+        <footer>
+            <img src="{% static 'svgs/check-message.svg' %}" height="22" width="22">
+            <img src="{% static 'svgs/delete.svg' %}" height="22" width="22">
+        </footer>
+    </article>
+    {% endfor %}
+    {% else %}
+    <h3>No messages :(</h3>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block script %}
+{% endblock script %}
